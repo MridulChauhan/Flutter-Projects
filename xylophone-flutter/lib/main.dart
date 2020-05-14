@@ -1,19 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/widgets.dart';
 
-void main() => runApp(XylophoneApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(XylophoneApp());
+}
 
 class XylophoneApp extends StatelessWidget {
-  final player = AudioCache();
-  Widget buildKey({int soundNo, Color Colour}) {
+  final assetsAudioPlayer = AssetsAudioPlayer();
+  Expanded buildKey({int soundNo, Color Colour, String SongName}) {
     return Expanded(
       child: FlatButton(
         color: Colour,
         onPressed: () {
-          player.play('note$soundNo.wav');
+          assetsAudioPlayer.open(Audio("assets/audios/Song$soundNo.mp3"));
         },
+        child: Text('Play$SongName'),
       ),
     );
   }
@@ -32,13 +36,41 @@ class XylophoneApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildKey(soundNo: 1, Colour: Colors.redAccent),
-              buildKey(soundNo: 2, Colour: Colors.blueAccent),
-              buildKey(soundNo: 3, Colour: Colors.greenAccent),
-              buildKey(soundNo: 4, Colour: Colors.yellowAccent),
-              buildKey(soundNo: 5, Colour: Colors.pinkAccent),
-              buildKey(soundNo: 6, Colour: Colors.orangeAccent),
-              buildKey(soundNo: 7, Colour: Colors.tealAccent),
+              buildKey(
+                  soundNo: 7,
+                  Colour: Colors.redAccent,
+                  SongName: '01 - I Hate Luv Storys'),
+              buildKey(
+                  soundNo: 1,
+                  Colour: Colors.blueAccent,
+                  SongName: '02 Haareya (Arijit Singh)'),
+              buildKey(
+                  soundNo: 2,
+                  Colour: Colors.greenAccent,
+                  SongName: '03 Raabta - Title Song (Arijit Singh)'),
+              buildKey(
+                  soundNo: 3,
+                  Colour: Colors.yellowAccent,
+                  SongName: '04 - Gone Gone Gone'),
+              buildKey(
+                  soundNo: 4,
+                  Colour: Colors.pinkAccent,
+                  SongName: '05 - Kabira'),
+              buildKey(
+                  soundNo: 5,
+                  Colour: Colors.orangeAccent,
+                  SongName: '06 Roke Na Ruke Naina (Arijit Singh)'),
+              buildKey(
+                  soundNo: 6,
+                  Colour: Colors.tealAccent,
+                  SongName: '07 Humsafar (Akhil Sachdeva)'),
+              FloatingActionButton(
+                onPressed: () {
+                  assetsAudioPlayer.playOrPause();
+                },
+                child: Text('Stop'),
+                backgroundColor: Colors.red,
+              ),
             ],
           ),
         ),

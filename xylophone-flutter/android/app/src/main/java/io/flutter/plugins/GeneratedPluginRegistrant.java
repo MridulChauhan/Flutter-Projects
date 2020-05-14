@@ -1,8 +1,7 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
-import xyz.luan.audioplayers.AudioplayersPlugin;
-import io.flutter.plugins.pathprovider.PathProviderPlugin;
+import com.github.florent37.assets_audio_player.AssetsAudioPlayerPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -12,8 +11,7 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
-    AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
-    PathProviderPlugin.registerWith(registry.registrarFor("io.flutter.plugins.pathprovider.PathProviderPlugin"));
+    AssetsAudioPlayerPlugin.registerWith(registry.registrarFor("com.github.florent37.assets_audio_player.AssetsAudioPlayerPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {
